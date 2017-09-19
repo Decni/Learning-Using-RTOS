@@ -5,6 +5,12 @@
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途
  */
+
+/**
+ * @defgroup 单向链表 单向链表
+ * @{
+ */
+
 #include "tLib.h"
 
 /**
@@ -116,3 +122,5 @@ tSnode * tSListRemoveFirst (tSlist * slist) {
 
     }
 }
+/** @} */
+

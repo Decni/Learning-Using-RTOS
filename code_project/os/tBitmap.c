@@ -7,6 +7,11 @@
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途
  */
+
+/**
+ * @defgroup 位图结构 位图结构
+ * @{
+ */
 #include "tLib.h"
 
 /**
@@ -82,3 +87,5 @@ uint32_t tBitmapGetFirstSet (tBitmap *bitmap) {
         return tBitmapPosCount();
     }
 }
+
+/** @} */

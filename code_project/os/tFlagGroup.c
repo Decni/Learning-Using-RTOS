@@ -5,10 +5,16 @@
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途
  */
+
+/**
+ * @defgroup 事件标志组 事件标志组
+ * @{
+ */
+
 #include "tFlagGroup.h"
 #include "tinyOS.h"
 
-#if TINYOS_ENABLE_FLAGGROUP == 1
+#if !defined(TINYOS_ENABLE_FLAGGROUP) || TINYOS_ENABLE_FLAGGROUP == 1
 
 /**
  * 初始化事件标志组
@@ -199,6 +205,7 @@ uint32_t tFlagGroupDestroy (tFlagGroup *flagGroup) {
 
 #endif // TINYOS_ENABLE_FLAGGROUP
 
+/** @} */
 
 
 

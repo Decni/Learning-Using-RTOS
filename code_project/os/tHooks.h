@@ -5,6 +5,12 @@
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途
  */
+
+/**
+ * @defgroup Hooks扩展 Hooks扩展
+ * @{
+ */
+
 #ifndef THOOKS_H
 #define THOOKS_H
 
@@ -34,3 +40,6 @@ void tHooksTaskSwitch (tTask *from, tTask *to);
 void tHooksTaskInit (tTask *task);
 
 #endif
+
+/** @} */
+

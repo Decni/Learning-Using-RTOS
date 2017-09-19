@@ -5,6 +5,11 @@
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途
  */
+
+/**
+ * @defgroup 双向链表 双向链表
+ * @{
+ */
 #include "tLib.h"
 
 /**
@@ -201,3 +206,5 @@ void tListRemove (tList *list, tNode *node) {
     node->nextNode = node;
     node->preNode = node;
 }
+
+/** @} */

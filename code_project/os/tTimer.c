@@ -5,10 +5,16 @@
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途
  */
+
+/**
+ * @defgroup 软定时器 软定时器
+ * @{
+ */
+
 #include "tTimer.h"
 #include "tinyOS.h"
 
-#if TINYOS_ENABLE_TIMER == 1
+#if !defined(TINYOS_ENABLE_TIMER) || TINYOS_ENABLE_TIMER == 1
 
 static tList tTimerHardList;                    // "硬"定时器列表
 static tList tTimerSoftList;                    // "软"定时器列表
@@ -226,3 +232,4 @@ void tTimerInitTask (void) {
 }
 
 #endif
+/** @} */

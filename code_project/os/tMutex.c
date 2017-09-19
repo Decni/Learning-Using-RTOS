@@ -5,10 +5,16 @@
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途
  */
+
+/**
+ * @defgroup 互斥信号量 互斥信号量
+ * @{
+ */
+
 #include "tMutex.h"
 #include "tinyOS.h"
 
-#if TINYOS_ENABLE_MUTEX == 1
+#if !defined(TINYOS_ENABLE_MUTEX) || TINYOS_ENABLE_MUTEX == 1
 
 /**
  * 初始化互斥信号量
@@ -227,5 +233,7 @@ void tMutexGetInfo (tMutex *mutex, tMutexInfo *info) {
 }
 
 #endif
+
+/** @} */
 
 

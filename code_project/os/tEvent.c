@@ -5,6 +5,12 @@
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途
  */
+
+/**
+ * @defgroup 事件控制块 事件控制块
+ * @{
+ */
+
 #include "tinyOS.h"
 
 /**
@@ -209,6 +215,8 @@ uint32_t tEventWaitCount (tEvent *event) {
     tTaskExitCritical(status);
 
     return count;
-}  
+}
+
+/** @} */
 
 

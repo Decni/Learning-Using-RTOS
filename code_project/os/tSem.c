@@ -5,10 +5,16 @@
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途
  */
+
+/**
+ * @defgroup 信号量 计数信号量
+ * @{
+ */
+
 #include "tSem.h"
 #include "tinyOS.h"
 
-#if TINYOS_ENABLE_SEM == 1
+#if !defined(TINYOS_ENABLE_SEM) || TINYOS_ENABLE_SEM == 1
 
 /**
  * 初始化信号量
@@ -142,3 +148,4 @@ uint32_t tSemDestroy (tSem *sem) {
 
 #endif
 
+/** @} */

@@ -5,6 +5,13 @@
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途
  */
+
+/**
+ * @defgroup 任务管理 任务管理
+ * @{
+ */
+
+
 #include "tinyOS.h"
 
 /**
@@ -258,4 +265,6 @@ void tTaskGetInfo (tTask *task, tTaskInfo *info) {
     // 退出临界区
     tTaskExitCritical(status);
 }
+
+/** @} */
 

@@ -5,6 +5,12 @@
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途
  */
+
+/**
+ * @defgroup 内核核心 内核核心
+ * @{
+ */
+
 #ifndef TINYOS_H
 #define TINYOS_H
 
@@ -25,18 +31,18 @@
 
 // tinyOS的错误码
 typedef enum _tError {
-    tErrorNoError = 0,                                  // 没有错误
-    tErrorTimeout,                                      // 等待超时
-    tErrorResourceUnavaliable,                          // 资源不可用
-    tErrorDel,                                          // 被删除
-    tErrorResourceFull,                                 // 资源缓冲区满
-    tErrorOwner,                                        // 不匹配的所有者
+    tErrorNoError = 0,                                  /**< 没有错误 */
+    tErrorTimeout,                                      /**< 等待超时 */
+    tErrorResourceUnavaliable,                          /**< 资源不可用 */
+    tErrorDel,                                          /**< 被删除 */
+    tErrorResourceFull,                                 /**< 资源缓冲区满 */
+    tErrorOwner,                                        /**< 不匹配的所有者 */
 } tError;
 
-// 当前任务：记录当前是哪个任务正在运行
+//! 当前任务：记录当前是哪个任务正在运行
 extern tTask *currentTask;
 
-// 下一个将即运行的任务：在进行任务切换前，先设置好该值，然后任务切换过程中会从中读取下一任务信息
+//! 下一个将即运行的任务：在进行任务切换前，先设置好该值，然后任务切换过程中会从中读取下一任务信息
 extern tTask *nextTask;
 
 typedef uint32_t tTaskCritical_t;
@@ -68,3 +74,5 @@ void tSetSysTickPeriod (uint32_t ms);
 float tCpuUsageGet (void);
 
 #endif /* TINYOS_H */
+
+/** @} */

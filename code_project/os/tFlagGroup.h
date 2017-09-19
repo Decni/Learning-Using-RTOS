@@ -5,25 +5,31 @@
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途
  */
+
+/**
+ * @defgroup 事件标志组 事件标志组
+ * @{
+ */
+
 #ifndef TFLAGGROUP_H
 #define TFLAGGROUP_H
 
 #include "tConfig.h"
 
-#if TINYOS_ENABLE_FLAGGROUP == 1
+#if !defined(TINYOS_ENABLE_FLAGGROUP) || TINYOS_ENABLE_FLAGGROUP == 1
 
 #include "tEvent.h"
 
 // 事件标志组结构
 typedef struct _tFlagGroup {
-    tEvent event;                           // 事件控制块
-    uint32_t flags;                         // 当前事件标志
+    tEvent event;                           /**< 事件控制块 */
+    uint32_t flags;                         /**< 当前事件标志 */
 } tFlagGroup;
 
 // 事件标志组查询信息
 typedef struct _tFlagGroupInfo {
-    uint32_t flags;                         // 当前的事件标志
-    uint32_t taskCount;                     // 当前等待的任务计数
+    uint32_t flags;                         /**< 当前的事件标志 */
+    uint32_t taskCount;                     /**< 当前等待的任务计数 */
 } tFlagGroupInfo;
 
 #define TFLAGGROUP_CLEAR            (0x0 << 0)
@@ -50,3 +56,5 @@ uint32_t tFlagGroupDestroy (tFlagGroup *flagGroup);
 
 
 #endif /* TFLAGGROUP_H */
+
+/** @} */

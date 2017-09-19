@@ -10,9 +10,13 @@
 
 #include <stdint.h>
 
+/**
+ * @defgroup 位图结构 位图结构
+ * @{
+ */
 // 位图类型
 typedef struct {
-    uint32_t bitmap;       // 该位图只支持最大32位，如果需要的可扩充至更多位
+    uint32_t bitmap;       /**< 该位图只支持最大32位，如果需要的可扩充至更多位 */
 } tBitmap;
 
 void tBitmapInit (tBitmap *bitmap);
@@ -21,10 +25,16 @@ void tBitmapSet (tBitmap *bitmap, uint32_t pos);
 void tBitmapClear (tBitmap *bitmap, uint32_t pos);
 uint32_t tBitmapGetFirstSet (tBitmap *bitmap);
 
+/** @} */ // 模块结尾
+
+/**
+ * @defgroup 双向链表 双向链表
+ * @{
+ */
 // tinyOS链表的结点类型
 typedef struct _tNode {
-    struct _tNode *preNode;
-    struct _tNode *nextNode;
+    struct _tNode *preNode;             /**< 前一结点 */
+    struct _tNode *nextNode;            /**< 后一结点 */
 } tNode;
 
 void tNodeInit (tNode *node);
@@ -50,11 +60,17 @@ tNode *tListRemoveFirst (tList *list);
 void tListInsertAfter (tList *list, tNode *nodeAfter, tNode *nodeToInsert);
 void tListRemove (tList *list, tNode *node);
 
+/** @} */
+
+/**
+ * @defgroup 单向链表 单向链表
+ * @{
+ */
 /**
  * 单向链表结点
  */
 typedef struct _tSnode {
-    struct _tSnode * next;
+    struct _tSnode * next;                  /**<  后一结点 */
 }tSnode;
 
 void tSnodeInit (tSnode * snode);
@@ -63,9 +79,9 @@ void tSnodeInit (tSnode * snode);
  * 单向链表
  */
 typedef struct _tSlist {
-    tSnode * firstNode;                     // 第一个结点
-    tSnode * lastNode;                      // 最后一个结点
-    uint32_t nodeCount;                     // 总的结点数量
+    tSnode * firstNode;                     /**<  第一个结点 */
+    tSnode * lastNode;                      /**<  最后一个结点 */
+    uint32_t nodeCount;                     /**<  总的结点数量 */
 }tSlist;
 
 void tSlistInit (tSlist * slist);
@@ -75,5 +91,7 @@ tSnode * tSlistLast (tSlist * slist);
 void tSListAddFirst (tSlist *slist, tSnode * snode);
 void tSListAddLast (tSlist *slist, tSnode * snode);
 tSnode * tSListRemoveFirst (tSlist * slist);
+
+/** @} */
 
 #endif /* TLIB_H */

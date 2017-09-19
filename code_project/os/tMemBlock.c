@@ -5,10 +5,16 @@
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途
  */
+
+/**
+ * @defgroup 存储块 存储块
+ * @{
+ */
+
 #include "tMemBlock.h"
 #include "tinyOS.h"
 
-#if TINYOS_ENABLE_MEMBLOCK == 1
+#if !defined(TINYOS_ENABLE_MEMBLOCK) || TINYOS_ENABLE_MEMBLOCK == 1
 
 /**
  * 初始化存储控制块
@@ -160,3 +166,5 @@ uint32_t tMemBlockDestroy (tMemBlock *memBlock) {
 }
 
 #endif // TINYOS_ENABLE_MEMBLOCK
+
+/** @} */

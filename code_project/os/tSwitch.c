@@ -5,6 +5,12 @@
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途
  */
+
+/**
+ * @defgroup 内核核心 内核核心
+ * @{
+ */
+
 #include "tinyOS.h"
 #include "stm32f10x.h"
 
@@ -97,3 +103,5 @@ void tTaskSwitch () {
     // tTaskSwitch调用处继续往下运行
     MEM32(NVIC_INT_CTRL) = NVIC_PENDSVSET;  // 向NVIC_INT_CTRL写NVIC_PENDSVSET，用于PendSV
 }
+
+/** @} */

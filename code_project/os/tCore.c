@@ -5,23 +5,29 @@
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途
  */
+
+/**
+ * @defgroup 内核核心 内核核心
+ * @{
+ */
+
 #include "tinyOS.h"
 #include "stm32f10x.h"
 
-tTask *currentTask;                             // 当前任务：记录当前是哪个任务正在运行
-tTask *nextTask;                                // 下一个将即运行的任务：
-tTask *idleTask;                                // 空闲任务
+tTask *currentTask;                             /**< 当前任务：记录当前是哪个任务正在运行 */
+tTask *nextTask;                                /**< 下一个将即运行的任务： */
+tTask *idleTask;                                /**< 空闲任务 */
 
-tBitmap taskPrioBitmap;                         // 任务优先级的标记位置结构
-tList taskTable[TINYOS_PRO_COUNT];              // 所有任务的指针数组
+tBitmap taskPrioBitmap;                         /**< 任务优先级的标记位置结构 */
+tList taskTable[TINYOS_PRO_COUNT];              /**< 所有任务的指针数组 */
 
-uint8_t schedLockCount;                         // 调度锁计数器
-uint32_t tickCount;                             // 时钟节拍计数
+uint8_t schedLockCount;                         /**< 调度锁计数器 */
+uint32_t tickCount;                             /**< 时钟节拍计数 */
 
-tList tTaskDelayedList;                         // 延时队列
+tList tTaskDelayedList;                         /**< 延时队列 */
 
-uint32_t idleCount;                             // 空闲任务计数
-uint32_t idleMaxCount;                          // 空闲任务最大计数
+uint32_t idleCount;                             /**< 空闲任务计数 */
+uint32_t idleMaxCount;                          /**< 空闲任务最大计数 */
 
 #if TINYOS_ENABLE_CPUUSAGE_STAT == 1
 static void initCpuUsageStat (void);
@@ -263,8 +269,8 @@ void tTaskSystemTickHandler (void) {
 
 #if TINYOS_ENABLE_CPUUSAGE_STAT == 1
 
-static float cpuUsage;                      // cpu使用率统计
-static uint32_t enableCpuUsageStat;         // 是否使能cpu统计
+static float cpuUsage;                      /**< cpu使用率统计 */
+static uint32_t enableCpuUsageStat;         /**< 是否使能cpu统计 */
 
 /**
  * @brief 初始化cpu统计
@@ -324,8 +330,8 @@ float tCpuUsageGet (void) {
 
 #endif
 
-tTask tTaskIdle;                                            // 空闲任务结构
-tTaskStack idleTaskEnv[TINYOS_IDLETASK_STACK_SIZE];         // 空闲任务堆栈
+tTask tTaskIdle;                                            /**< 空闲任务结构 */
+tTaskStack idleTaskEnv[TINYOS_IDLETASK_STACK_SIZE];         /**< 空闲任务堆栈 */
 
 /**
  * @brief 空闲任务
@@ -400,3 +406,5 @@ int main () {
     tTaskRunFirst();
     return 0;
 }
+
+/** @} */
