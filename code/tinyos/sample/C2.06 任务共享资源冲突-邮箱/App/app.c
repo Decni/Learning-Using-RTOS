@@ -1,7 +1,7 @@
 /**
- * @brief tOS应用示例
+ * @brief tinyOS应用示例
  * @details
- *     tOS是一个小巧的嵌入式操作系统，为方便学习使用而开发。所有代码全部自行开发，本着简单易学的原则,
+ *     tinyOS是一个小巧的嵌入式操作系统，为方便学习使用而开发。所有代码全部自行开发，本着简单易学的原则,
  * 所有设计尽可能采用比较简单的设计。在设计之初，选择了目前最常用的ARM Cortex-M3内核为目标内核进行
  * 设计，无论你使用的是哪一款具体的Cortex-M芯片，均可能很方便地进行移植。
  *     由于该RTOS主要用于教学，没有经过严格的验证测试，所以不保证可靠性和稳定性。再次说明，本系统主要用于
@@ -34,6 +34,7 @@ int task3Flag;           // 用于指示任务运行状态的标志变量
 int task4Flag;           // 用于指示任务运行状态的标志变量
 
 static uint32_t shareCount = 0;                  // 全局共享计数器
+static tMbox shareCountMbox;
 
 /**
  * 初始化共享计数器
@@ -77,10 +78,13 @@ uint32_t shareCountGet (void) {
  */
 void task1Entry (void *param) {
     uint32_t before;
+    void * lockMsg = 0;
 
 #if 1
+    tMboxWait(&shareCountMbox, &lockMsg, 0);
     shareCountIncrease(1, 1);
-    xprintf("Task1 S1:%d/%d\n", shareCountGet(), realCount);
+     tMboxNotify(&shareCountMbox, lockMsg, tMBOXSendFront);
+   xprintf("Task1 S1:%d/%d\n", shareCountGet(), realCount);
 #else
     before = shareCountGet();
     shareCountIncrease(1, 0);
@@ -98,10 +102,13 @@ void task1Entry (void *param) {
  */
 void task2Entry (void *param) {
     uint32_t before;
+    void * lockMsg = 0;
 
 #if 1
     // task2的修改会被覆盖
+    tMboxWait(&shareCountMbox, &lockMsg, 0);
     shareCountIncrease(1, 0);
+    tMboxNotify(&shareCountMbox, lockMsg, tMBOXSendFront);
     xprintf("Task2 S1:%d/%d\n", shareCountGet(), realCount);
 #else
     before = shareCountGet();
@@ -143,9 +150,12 @@ void task4Entry (void *param) {
 /**
  * App的初始化
  */
+void * msgBuffer[1];
 void tInitApp (void) {
     halInit();
 
+    tMboxInit(&shareCountMbox, msgBuffer, 1);
+    tMboxNotify(&shareCountMbox, (void *)0x1, tMBOXSendFront);
     shareCountInit(0);
 
     tTaskInit(&task1, task1Entry, (void *) 0x0, TASK1_PRIO, task1Env, sizeof(task1Env));
