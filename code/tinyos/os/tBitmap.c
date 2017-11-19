@@ -2,7 +2,7 @@
  * @brief tinyOS 位图数据结构
  * @details 主要用于实现os中快速优先级查找功能。位图中包含一连串的位，每个位均有编号
  * 编号从0开始增大。每个位均可置1或者清0.
- * @author 01课堂 lishutong
+ * @author 01课堂 李述铜 http://01ketang.cc
  * @date 2017-06-01
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途

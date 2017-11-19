@@ -1,6 +1,6 @@
 /**
  * @brief tinyOS的核心头文件。包含了所有关键数据类型的定义，还有核心的函数。
- * @author 01课堂 lishutong
+ * @author 01课堂 李述铜 http://01ketang.cc
  * @date 2017-06-01
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途
