@@ -81,12 +81,12 @@ void extioInit (void) {
     NVIC_Init(&NVIC_InitStructure);
 }
 
-/**
- * 初始化目标设备
+/*
+ * 初始化中断配置
  */
-void halInit (void) {
-    usartInit();
-    extioInit();
+void interruptInit (void) {
+    NVIC_SetPriority(USART1_IRQn, NVIC_EncodePriority(0, 1, 0));
+    NVIC_SetPriority(USART2_IRQn, NVIC_EncodePriority(0, 0, 0));
 }
 
 /**
@@ -124,19 +124,80 @@ void interruptByOtherTask (void) {
  * 使能指定的中断
  * @param irq 使能的中断序号
  */
-void interruptEnable (IRQn_Type irq, int enable) {
+void interruptEnable (enum IRQType irq, int enable) {
+    IRQn_Type type;
+
+    switch (irq) {
+        case IRQ_PRIO_HIGH:
+            type = USART1_IRQn;
+            break;
+        case IRQ_PRIO_MIDDLE:
+            type = USART2_IRQn;
+            break;
+        case IRQ_PRIO_LOW:
+            break;
+    }
     if (enable) {
-        NVIC_EnableIRQ(irq);
+        NVIC_EnableIRQ(type);
     } else {
-        NVIC_DisableIRQ(irq);
+        NVIC_DisableIRQ(type);
     }
 }
 
 /**
  * 通过设置IRQ挂起位，主动触发一个中断
  */
-void interruptByIRQ (IRQn_Type irq) {
-    NVIC_SetPendingIRQ(irq);
+void interruptByIRQ (enum IRQType irq) {
+    IRQn_Type type;
+
+    switch (irq) {
+        case IRQ_PRIO_HIGH:
+            type = USART1_IRQn;
+            break;
+        case IRQ_PRIO_MIDDLE:
+            type = USART2_IRQn;
+            break;
+        case IRQ_PRIO_LOW:
+            break;
+    }
+
+    NVIC_SetPendingIRQ(type);
+}
+
+/**
+ * 中断处理函数
+ */
+__weak void IRQHighHandler (void) {
+
+}
+
+/**
+ * 中断处理函数
+ */
+__weak void IRQMiddleHandler (void) {
+
+}
+
+
+/**
+ * 中断处理函数
+ */
+__weak void IRQLowHandler (void) {
+
+}
+
+/**
+ * 中断处理函数
+ */
+void USART1_IRQHandler (void) {
+    IRQHighHandler();
+}
+
+/**
+ * 中断处理函数
+ */
+void USART2_IRQHandler (void) {
+    IRQMiddleHandler();
 }
 
 /**
@@ -156,4 +217,13 @@ void printMem (uint8_t *mem, uint32_t size) {
         }
     }
     xprintf("\n");
+}
+
+/**
+ * 初始化目标设备
+ */
+void halInit (void) {
+    usartInit();
+    extioInit();
+    interruptInit();
 }

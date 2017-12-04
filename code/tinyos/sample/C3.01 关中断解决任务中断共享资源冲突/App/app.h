@@ -1,5 +1,5 @@
 /**
- * @brief tOS 目标相关配置代码
+ * @brief tOS应用示例
  * @details
  *     tOS是一个小巧的嵌入式操作系统，为方便学习使用而开发。所有代码全部自行开发，本着简单易学的原则,
  * 所有设计尽可能采用比较简单的设计。在设计之初，选择了目前最常用的ARM Cortex-M3内核为目标内核进行
@@ -9,50 +9,35 @@
  *     本工程主要用于演示tOS各个模块如何使用。通过学习，你可以顺利地理解如何使用其它RTOS。
  *     如果你对tOS的实现原理和应用感兴趣，也欢迎访问我的博客，找到相关的配套教学视频。
  *
- * @author 01课堂 李述铜 http://01ketang.cc
+ * @author 01课堂 lishutong
  * @date 2017-06-01
  * @version 1.0
  * @copyright 版权所有，禁止用于商业用途
  */
-#ifndef PROJECT_TARGET_H
-#define PROJECT_TARGET_H
+#ifndef PROJECT_APP_H_H
+#define PROJECT_APP_H_H
 
-#include <stm32f10x.h>
+#include <stdio.h>
 #include "tinyOS.h"
+#include "hal.h"
 
-enum IRQType {
-    IRQ_PRIO_HIGH,                  // 高优先级中断
-    IRQ_PRIO_MIDDLE,                // 中优先级中断
-    IRQ_PRIO_LOW,                   // 低优先级中断
-};
+#define TASK1_ENV_SIZE              512             // Task1的堆栈空间单元数
+#define TASK2_ENV_SIZE              512             // Task2的堆栈空间单元数
+#define TASK3_ENV_SIZE              512             // Task3的堆栈空间单元数
+#define TASK4_ENV_SIZE              512             // Task4的堆栈空间单元数
 
-#if TINYOS_ENABLE_MUTEX == 1
-    extern tMutex xprintfMutex;
+#define TASK1_PRIO                   1              // Task1的任务优先级
+#define TASK2_PRIO                   2              // Task2的任务优先级
+#define TASK3_PRIO                   3              // Task3的任务优先级
+#define TASK4_PRIO                   4              // Task4的任务优先级
 
-    #define xprintf(fmt, ...) {     \
-            tMutexWait(&xprintfMutex, 0);   \
-            printf(fmt, ##__VA_ARGS__);       \
-            tMutexNotify(&xprintfMutex);    \
-    }
-#else
-    #define xprintf(fmt, ...) { printf(fmt, ##__VA_ARGS__); }
-#endif
+// 各个任务
+void task1Entry (void *param);
 
+void task2Entry (void *param);
 
-void halInit (void);
+void task3Entry (void *param);
 
-void targetEnterSleep (void);
+void task4Entry (void *param);
 
-void interruptByOtherTask (void);
-
-void interruptEnable (enum IRQType irq, int enable);
-
-void interruptByIRQ (enum IRQType irq);
-
-void xprintfMem (uint8_t * mem, uint32_t size);
-
-__weak void IRQHighHandler (void);
-__weak void IRQMiddleHandler (void);
-__weak void IRQLowHandler (void);
-
-#endif //PROJECT_TARGET_H
+#endif //PROJECT_APP_H_H
