@@ -21,11 +21,47 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.c" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tinyos/sample/C3.04 请求模式解决任务中断共享资源冲突/App/app.c">
+      <file leaf-file-name="app.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tinyos/sample/C3.05 嵌套中断共享资源问题及解决/App/app.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="750">
-              <caret line="50" column="3" lean-forward="true" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
+            <state relative-caret-position="362">
+              <caret line="66" column="41" lean-forward="false" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
+              <folding>
+                <marker date="1512918826000" expanded="true" signature="1357:1585" ph="{...}" />
+                <marker date="1512918826000" expanded="true" signature="1662:1859" ph="{...}" />
+                <marker date="1512918826000" expanded="true" signature="1935:2051" ph="{...}" />
+                <marker date="1512918826000" expanded="true" signature="2127:2243" ph="{...}" />
+                <marker date="1512918826000" expanded="true" signature="2320:2436" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.c" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tinyos/sample/C3.01 关中断解决任务中断共享资源冲突/App/app.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="77" column="1" lean-forward="true" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hal.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tinyos/hal/hal.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="80">
+              <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hal.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tinyos/hal/hal.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-534">
+              <caret line="87" column="51" lean-forward="false" selection-start-line="87" selection-start-column="51" selection-end-line="87" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -43,6 +79,7 @@
       <find>@author 01课堂 lishuto</find>
       <find>@author 01课堂 lishuton</find>
       <find>@author 01课堂 lishutong</find>
+      <find>USART2_IRQn</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -85,9 +122,12 @@
         <option value="$PROJECT_DIR$/tinyos/sample/C2.08 任务间死锁问题/App/app.c" />
         <option value="$PROJECT_DIR$/tinyos/sample/C2.08 任务间死锁问题/App/app.h" />
         <option value="$PROJECT_DIR$/tinyos/hal/hal.h" />
-        <option value="$PROJECT_DIR$/tinyos/hal/hal.c" />
         <option value="$PROJECT_DIR$/tinyos/sample/C3.00 任务与中断共享资源冲突示例/App/app.c" />
         <option value="$PROJECT_DIR$/tinyos/sample/C3.02 关指定中断解决任务中断共享资源冲突/App/app.c" />
+        <option value="$PROJECT_DIR$/tinyos/sample/C3.04 请求模式解决任务中断共享资源冲突/App/app.c" />
+        <option value="$PROJECT_DIR$/tinyos/sample/C4.00 嵌套中断共享资源问题示例/App/app.c" />
+        <option value="$PROJECT_DIR$/tinyos/hal/hal.c" />
+        <option value="$PROJECT_DIR$/tinyos/sample/C3.05 嵌套中断共享资源问题及解决/App/app.c" />
       </list>
     </option>
   </component>
@@ -98,8 +138,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="18" />
-    <option name="y" value="61" />
+    <option name="x" value="1" />
     <option name="width" value="1276" />
     <option name="height" value="800" />
   </component>
@@ -176,37 +215,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="C3.04 请求模式解决任务中断共享资源冲突" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="code" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tinyos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="C3.04 请求模式解决任务中断共享资源冲突" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="App" />
+              <option name="myItemId" value="hal" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -437,15 +446,15 @@
       <workItem from="1512349176708" duration="5044000" />
       <workItem from="1512432736563" duration="7000" />
       <workItem from="1512443356739" duration="28000" />
-      <workItem from="1512874427502" duration="643000" />
+      <workItem from="1512874427502" duration="4328000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8636000" />
+    <option name="totallyTimeSpent" value="12321000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="18" y="61" width="1276" height="800" extended-state="0" />
+    <frame x="1" y="0" width="1276" height="800" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2082658" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -481,13 +490,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tinyos/sample/C2.04 任务共享资源冲突-二值信号量/App/app.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1395">
-          <caret line="93" column="14" lean-forward="false" selection-start-line="93" selection-start-column="4" selection-end-line="93" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tinyos/sample/C2.05 任务共享资源冲突-事件标志组/App/app.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -754,20 +756,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tinyos/hal/hal.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="169" column="33" lean-forward="false" selection-start-line="169" selection-start-column="7" selection-end-line="169" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tinyos/hal/hal.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tinyos/tools/chipdebug.ini" />
     <entry file="file://$PROJECT_DIR$/tinyos/tools/tConfig.h">
       <provider selected="true" editor-type-id="text-editor">
@@ -787,13 +775,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="388">
           <caret line="87" column="16" lean-forward="false" selection-start-line="87" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tinyos/sample/C3.01 关中断解决任务中断共享资源冲突/App/app.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="77" column="1" lean-forward="false" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -830,8 +811,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tinyos/sample/C3.04 请求模式解决任务中断共享资源冲突/App/app.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="50" column="3" lean-forward="true" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
+        <state relative-caret-position="330">
+          <caret line="22" column="48" lean-forward="true" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tinyos/hal/hal.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tinyos/hal/hal.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-534">
+          <caret line="87" column="51" lean-forward="false" selection-start-line="87" selection-start-column="51" selection-end-line="87" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tinyos/sample/C3.05 嵌套中断共享资源问题及解决/App/app.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="66" column="41" lean-forward="false" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
+          <folding>
+            <marker date="1512918826000" expanded="true" signature="1357:1585" ph="{...}" />
+            <marker date="1512918826000" expanded="true" signature="1662:1859" ph="{...}" />
+            <marker date="1512918826000" expanded="true" signature="1935:2051" ph="{...}" />
+            <marker date="1512918826000" expanded="true" signature="2127:2243" ph="{...}" />
+            <marker date="1512918826000" expanded="true" signature="2320:2436" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tinyos/sample/C3.01 关中断解决任务中断共享资源冲突/App/app.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="77" column="1" lean-forward="true" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
           <folding />
         </state>
       </provider>

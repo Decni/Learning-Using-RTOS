@@ -85,8 +85,9 @@ void extioInit (void) {
  * 初始化中断配置
  */
 void interruptInit (void) {
-    NVIC_SetPriority(USART1_IRQn, NVIC_EncodePriority(0, 1, 0));
-    NVIC_SetPriority(USART2_IRQn, NVIC_EncodePriority(0, 0, 0));
+    NVIC_SetPriorityGrouping(NVIC_PriorityGroup_2);
+    NVIC_SetPriority(USART1_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
+    NVIC_SetPriority(USART2_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 1, 0));
 }
 
 /**
