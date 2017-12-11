@@ -21,47 +21,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tinyos/sample/C3.05 嵌套中断共享资源问题及解决/App/app.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="66" column="41" lean-forward="false" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
-              <folding>
-                <marker date="1512918826000" expanded="true" signature="1357:1585" ph="{...}" />
-                <marker date="1512918826000" expanded="true" signature="1662:1859" ph="{...}" />
-                <marker date="1512918826000" expanded="true" signature="1935:2051" ph="{...}" />
-                <marker date="1512918826000" expanded="true" signature="2127:2243" ph="{...}" />
-                <marker date="1512918826000" expanded="true" signature="2320:2436" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="app.c" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tinyos/sample/C3.01 关中断解决任务中断共享资源冲突/App/app.c">
+        <entry file="file://$PROJECT_DIR$/tinyos/sample/C4.02 用邮箱实现多事件的单向同步/App/app.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="77" column="1" lean-forward="true" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hal.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tinyos/hal/hal.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hal.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tinyos/hal/hal.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-534">
-              <caret line="87" column="51" lean-forward="false" selection-start-line="87" selection-start-column="51" selection-end-line="87" selection-end-column="51" />
+            <state relative-caret-position="299">
+              <caret line="81" column="32" lean-forward="false" selection-start-line="81" selection-start-column="32" selection-end-line="81" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -128,6 +92,9 @@
         <option value="$PROJECT_DIR$/tinyos/sample/C4.00 嵌套中断共享资源问题示例/App/app.c" />
         <option value="$PROJECT_DIR$/tinyos/hal/hal.c" />
         <option value="$PROJECT_DIR$/tinyos/sample/C3.05 嵌套中断共享资源问题及解决/App/app.c" />
+        <option value="$PROJECT_DIR$/tinyos/sample/C4.01 任务间单向同步- 问题/App/app.c" />
+        <option value="$PROJECT_DIR$/tinyos/sample/C4.01 用信号量实现任务间单向同步/App/app.c" />
+        <option value="$PROJECT_DIR$/tinyos/sample/C4.02 用邮箱实现多事件的单向同步/App/app.c" />
       </list>
     </option>
   </component>
@@ -138,7 +105,6 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
     <option name="width" value="1276" />
     <option name="height" value="800" />
   </component>
@@ -215,7 +181,37 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="hal" />
+              <option name="myItemId" value="sample" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="C4.02 用邮箱实现多事件的单向同步" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="code" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="code" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tinyos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sample" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="C4.02 用邮箱实现多事件的单向同步" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="App" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -447,17 +443,19 @@
       <workItem from="1512432736563" duration="7000" />
       <workItem from="1512443356739" duration="28000" />
       <workItem from="1512874427502" duration="4328000" />
+      <workItem from="1512971152862" duration="453000" />
+      <workItem from="1512979775409" duration="246000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12321000" />
+    <option name="totallyTimeSpent" value="13020000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="0" width="1276" height="800" extended-state="6" />
+    <frame x="0" y="0" width="1276" height="800" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2082658" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21474878" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1042524" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -490,41 +488,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tinyos/sample/C2.05 任务共享资源冲突-事件标志组/App/app.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tinyos/sample/C2.03 任务共享资源冲突-调度锁/App/app.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tinyos/sample/C2.02 任务共享资源冲突-临界区/App/app.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1740">
-          <caret line="116" column="21" lean-forward="false" selection-start-line="116" selection-start-column="4" selection-end-line="116" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tinyos/sample/C2.07 任务间共享资源冲突-互斥信号量/App/app.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tinyos/sample/C2.06 任务共享资源冲突-邮箱/App/app.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1245">
-          <caret line="83" column="13" lean-forward="false" selection-start-line="83" selection-start-column="4" selection-end-line="83" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tinyos/sample/C2.04 任务共享资源冲突-二值信号量/App/app.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1395">
@@ -789,7 +752,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="6" column="58" lean-forward="false" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -797,29 +759,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="825">
           <caret line="55" column="8" lean-forward="false" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tinyos/sample/C3.04 请求模式解决共享资源冲突/App/app.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-652">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/tinyos/sample/C3.04 请求模式解决共享资源冲突/App/app.c" />
     <entry file="file://$PROJECT_DIR$/tinyos/sample/C3.04 请求模式解决任务中断共享资源冲突/App/app.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="48" lean-forward="true" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tinyos/hal/hal.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
+        <state relative-caret-position="345">
           <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="17" />
           <folding />
         </state>
@@ -827,7 +780,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tinyos/hal/hal.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-534">
+        <state relative-caret-position="1305">
           <caret line="87" column="51" lean-forward="false" selection-start-line="87" selection-start-column="51" selection-end-line="87" selection-end-column="51" />
           <folding />
         </state>
@@ -835,22 +788,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tinyos/sample/C3.05 嵌套中断共享资源问题及解决/App/app.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
+        <state relative-caret-position="599">
           <caret line="66" column="41" lean-forward="false" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
-          <folding>
-            <marker date="1512918826000" expanded="true" signature="1357:1585" ph="{...}" />
-            <marker date="1512918826000" expanded="true" signature="1662:1859" ph="{...}" />
-            <marker date="1512918826000" expanded="true" signature="1935:2051" ph="{...}" />
-            <marker date="1512918826000" expanded="true" signature="2127:2243" ph="{...}" />
-            <marker date="1512918826000" expanded="true" signature="2320:2436" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tinyos/sample/C3.01 关中断解决任务中断共享资源冲突/App/app.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="77" column="1" lean-forward="true" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
+        <state relative-caret-position="1155">
+          <caret line="77" column="1" lean-forward="false" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tinyos/sample/C4.01 任务间单向同步- 问题/App/app.h" />
+    <entry file="file://$PROJECT_DIR$/tinyos/sample/C4.01 任务间单向同步- 问题/App/app.c" />
+    <entry file="file://$PROJECT_DIR$/tinyos/sample/C4.02 用邮箱实现多事件的单向同步/App/app.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tinyos/sample/C4.01 用信号量实现任务间单向同步/App/app.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tinyos/sample/C4.02 用邮箱实现多事件的单向同步/App/app.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="81" column="32" lean-forward="false" selection-start-line="81" selection-start-column="32" selection-end-line="81" selection-end-column="32" />
           <folding />
         </state>
       </provider>
