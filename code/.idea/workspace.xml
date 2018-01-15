@@ -31,7 +31,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.c" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tinyos/sample/C4.07 利用邮箱消息队列实现数据通信/App/app.c">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="237">
@@ -51,7 +51,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tConfig.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tConfig.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tinyos/sample/C5.01 系统时钟节拍设置/App/tConfig.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
@@ -62,9 +62,19 @@
         </entry>
       </file>
       <file leaf-file-name="app.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tinyos/sample/C5.04 周期性定时事件的处理2/App/app.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="40" column="20" lean-forward="true" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tinyos/sample/C5.01 系统时钟节拍设置/App/app.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
+            <state relative-caret-position="525">
               <caret line="35" column="3" lean-forward="false" selection-start-line="35" selection-start-column="3" selection-end-line="35" selection-end-column="3" />
               <folding />
             </state>
@@ -152,6 +162,7 @@
         <option value="$PROJECT_DIR$/tinyos/sample/C4.07 利用邮箱消息队列实现数据通信/App/app.c" />
         <option value="$PROJECT_DIR$/tinyos/sample/C5.01 系统时钟节拍设置/App/app.c" />
         <option value="$PROJECT_DIR$/tinyos/sample/C5.01 系统时钟节拍设置/App/tConfig.h" />
+        <option value="$PROJECT_DIR$/tinyos/sample/C5.04 周期性定时事件的处理2/App/app.c" />
       </list>
     </option>
   </component>
@@ -460,16 +471,18 @@
       <workItem from="1513413241735" duration="3346000" />
       <workItem from="1514086850612" duration="223000" />
       <workItem from="1514106175610" duration="1761000" />
+      <workItem from="1516012529370" duration="943000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20233000" />
+    <option name="totallyTimeSpent" value="21176000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1276" height="800" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23419774" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23743922" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1042524" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -502,13 +515,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tinyos/os/tHooks.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tinyos/os/tinyOS.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -809,17 +815,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tinyos/sample/C4.07 利用邮箱消息队列实现数据通信/App/app.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="53" column="22" lean-forward="false" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tinyos/sample/C5.01 系统时钟节拍设置/App/app.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
+        <state relative-caret-position="525">
           <caret line="35" column="3" lean-forward="false" selection-start-line="35" selection-start-column="3" selection-end-line="35" selection-end-column="3" />
           <folding />
         </state>
@@ -837,6 +835,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="50" lean-forward="false" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tinyos/sample/C5.04 周期性定时事件的处理2/App/app.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="40" column="20" lean-forward="true" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tinyos/sample/C4.07 利用邮箱消息队列实现数据通信/App/app.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="53" column="22" lean-forward="false" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
           <folding />
         </state>
       </provider>

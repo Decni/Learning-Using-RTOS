@@ -143,9 +143,10 @@ void tTimerGetInfo (tTimer *timer, tTimerInfo *info) {
  */
 static void tTimerCallFuncList (tList *timerList) {
     tNode *node;
+		uint32_t count;
 
+		for (node = tListFirst(timerList), count = tListCount(timerList); count > 0; count--) {
     // 检查所有任务的delayTicks数，如果不0的话，减1。
-    for (node = timerList->headNode.nextNode; node != &(timerList->headNode); node = node->nextNode) {
         tTimer *timer = tNodeParent(node, tTimer, linkNode);
 
         // 如果延时已到，则调用定时器处理函数
@@ -168,6 +169,8 @@ static void tTimerCallFuncList (tList *timerList) {
                 timer->state = tTimerStopped;
             }
         }
+				
+				node = tListNext(timerList, node);
     }
 }
 
