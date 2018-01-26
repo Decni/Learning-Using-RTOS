@@ -17,6 +17,8 @@
 #include "tinyOS.h"
 #include "app.h"
 #include "hal.h"
+#include <stdlib.h>
+
 
 static tTask task1;                     // 任务1结构
 static tTask task2;                     // 任务2结构
@@ -33,35 +35,39 @@ int task2Flag;           // 用于指示任务运行状态的标志变量
 int task3Flag;           // 用于指示任务运行状态的标志变量
 int task4Flag;           // 用于指示任务运行状态的标志变量
 
-tTimer timer;
+typedef struct __Packet {
+    uint32_t size;
+    uint8_t buffer[100];
+} Packet;
 
-void doSomething (void * param) {
-    static enum {STATE1, STATE2} state = STATE1;
+Packet packetItems[20];
+tMemBlock packetMemBlock;
 
-    switch (state) {
-        case STATE1:
-            xprintf("timer over! STATE1\n");
+void *packetBuffer[20];
+tMbox packetMbox;
 
-            state = STATE2;
-            break;
-        case STATE2:
-            xprintf("timer over! STATE2\n");
-
-            state = STATE1;
-            break;
-    }
-}
+tMutex heapMutex;
 
 /**
  * 任务的运行代码
  * @param param 任务初始运行参数
  */
 void task1Entry (void *param) {
+    Packet *packet;
+    int i = 0;
+
     for (;;) {
-        task1Flag = 1;
-        tTaskDelay(1);
-        task1Flag = 0;
-        tTaskDelay(1);
+				tMutexWait(&heapMutex, 0);
+				packet = (Packet *)malloc(sizeof(Packet));
+				tMutexNotify(&heapMutex);
+			
+			//tMemBlockWait(&packetMemBlock, (void **) &packet, 0);
+
+        packet->size = i++;
+
+        tMboxNotify(&packetMbox, packet, tMBOXSendNormal);
+			
+				tTaskDelay(1);
     }
 }
 
@@ -70,12 +76,17 @@ void task1Entry (void *param) {
  * @param param 任务初始运行参数
  */
 void task2Entry (void *param) {
-	
+    Packet *packet;
     for (;;) {
-        task2Flag = 1;
-        tTaskDelay(1);
-        task2Flag = 0;
-        tTaskDelay(1);
+        tMboxWait(&packetMbox, (void **) &packet, 0);
+
+        xprintf("packet size:%d\n", packet->size);
+
+        //tMemBlockNotify(&packetMemBlock, packet);
+				tMutexWait(&heapMutex, 0);
+				free(packet);
+				tMutexNotify(&heapMutex);
+
     }
 }
 
@@ -112,8 +123,10 @@ void task4Entry (void *param) {
 void tInitApp (void) {
     halInit();
 
-		tTimerInit(&timer, 10, 10, doSomething, (void *)0, TIMER_CONFIG_TYPE_SOFT);
-		tTimerStart(&timer);
+    tMboxInit(&packetMbox, packetBuffer, 20);
+    tMemBlockInit(&packetMemBlock, packetItems, sizeof(Packet), 20);
+
+		tMutexInit(&heapMutex);
 	
     tTaskInit(&task1, task1Entry, (void *) 0x0, TASK1_PRIO, task1Env, sizeof(task1Env));
     tTaskInit(&task2, task2Entry, (void *) 0x0, TASK2_PRIO, task2Env, sizeof(task2Env));
