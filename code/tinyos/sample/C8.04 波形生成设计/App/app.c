@@ -19,16 +19,13 @@ static tTaskStack task1Env[TASK1_ENV_SIZE];     // 任务1的堆栈空间
 static tTask task1;
 
 void task1Entry (void * param) {
-
+    WaveSelectType(WaveSquare);
+    
     for (;;) {
-        ExtIOSetDir(ExtIOPin0, 0);
-        ExtIOSetState(ExtIOPin0, ExtIOHigh);
-        tTaskDelay(1);
-
-        ExtIOSetDir(ExtIOPin1, 1);
-        ExtIOSetDir(ExtIOPin2, 0);
-        ExtIOSetState(ExtIOPin1, ExtIOGetState(ExtIOPin2));
-        tTaskDelay(1);
+        WaveStartOutput();
+        tTaskDelay(10);
+        WaveStopOutput();
+        tTaskDelay(10);
     }
 }
 

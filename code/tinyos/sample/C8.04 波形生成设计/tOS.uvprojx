@@ -485,6 +485,11 @@
               <FileType>1</FileType>
               <FilePath>.\App\extio.c</FilePath>
             </File>
+            <File>
+              <FileName>WaveGen.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\App\WaveGen.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
