@@ -11,6 +11,7 @@
 
 #include <stm32f10x.h>
 #include "tinyOS.h"
+#include <stdio.h>
 
 enum IRQType {
     IRQ_PRIO_HIGH,                  // 高优先级中断

@@ -182,7 +182,7 @@ __weak void IRQLowHandler (void) {
 /**
  * 中断处理函数
  */
-void USART1_IRQHandler (void) {
+__weak void USART1_IRQHandler (void) {
     IRQHighHandler();
 }
 
