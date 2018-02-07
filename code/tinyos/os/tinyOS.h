@@ -72,6 +72,7 @@ void tTaskSystemTickHandler (void);
 void tInitApp (void);
 void tSetSysTickPeriod (uint32_t ms);
 float tCpuUsageGet (void);
+tTask * tIdleTask (void);
 
 #endif /* TINYOS_H */
 

@@ -234,5 +234,9 @@ void tTimerInitTask (void) {
 
 }
 
+tTask * tTimerTask (void) {
+    return &tTimeTask;
+}
+
 #endif
 /** @} */

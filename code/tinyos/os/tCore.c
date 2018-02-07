@@ -372,6 +372,15 @@ void idleTaskEntry (void *param) {
 }
 
 /**
+ * 获取空闲任务结构
+ * @return 空闲任务结构
+ */
+tTask * tIdleTask (void) {
+    return &tTaskIdle;
+}
+
+
+/**
  * @brief 系统入口，完成所有功能的创建，空闲任务的创建等功能
  * @return 0, 无用
  */

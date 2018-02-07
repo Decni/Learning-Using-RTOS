@@ -93,7 +93,7 @@ tNode *tListPre (tList *list, tNode *node) {
  * @return 后一结点，如果没有，返回0
  */
 tNode *tListNext (tList *list, tNode *node) {
-    if ((node->nextNode == node) || (node->nextNode == &list->headNode)) {
+    if ((node->nextNode == &list->headNode) || (node->nextNode == &list->headNode)) {
         return (tNode *) 0;
     } else {
         return node->nextNode;
