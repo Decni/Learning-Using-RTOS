@@ -16,7 +16,10 @@
 
 typedef enum {
     ButtonNone,
-    ButtonStartStop
+    ButtonStartStop,
+    Button1,
+    Button2,
+    Button3,
 }ButtonId;
 
 typedef enum {

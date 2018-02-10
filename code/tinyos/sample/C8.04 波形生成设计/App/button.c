@@ -22,25 +22,40 @@ static tTimer buttonTimer;              // 按键扫描定时器
 static void ButtonHalInit (void) {
     GPIO_InitTypeDef GPIO_InitStructure;
 
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
-    GPIO_Init(GPIOA, &GPIO_InitStructure);
+    GPIO_Init(GPIOB, &GPIO_InitStructure);
 }
 
 /**
  * 获取哪一个按键按下
  */
 static ButtonId ButtonGetWhichPress (void) {
-	ButtonId buttonId = ButtonNone;
+    uint8_t state;
+    ButtonId buttonId = ButtonNone;
 
-    // 在这里实际上可以处理多个按键，但是如果多个按键同时按下的话，需要从中选一个
-    uint8_t startBtnState = GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0);
-    if (startBtnState == Bit_SET) {
+    state = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_1);
+    if (state == Bit_SET) {
+        buttonId = Button1;
+    }
+
+    state = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_2);
+    if (state == Bit_SET) {
+        buttonId = Button2;
+    }
+
+    state = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_3);
+    if (state == Bit_SET) {
+        buttonId = Button3;
+    }
+
+    state = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_0);
+    if (state == Bit_SET) {
         buttonId = ButtonStartStop;
     }
-    
+
     return buttonId;
 }
 
@@ -74,9 +89,9 @@ static void timerFunc (void * arg) {
                 DEBUG_PRINT("RECHECK_DOWN -> NO_DOWN:%d\n", currPressedButton);
             } else if (prePressedButton == currPressedButton) {
                 // 发消息通知，根据按键类型，决定如何处理. 可以考虑从某个配置表中查，这样可配置多个按键事件的通知行为
-                uint32_t notifyOption = (currPressedButton == ButtonStartStop) 
-																? tMBOXSendFront : tMBOXSendNormal;
-                tMboxNotify(&buttonMbox, (void *) ButtonStartStop, notifyOption);
+                uint32_t notifyOption = (currPressedButton == ButtonStartStop)
+                                        ? tMBOXSendFront : tMBOXSendNormal;
+                tMboxNotify(&buttonMbox, (void *)currPressedButton, notifyOption);
 
                 scanState = CONFIRMED_DOWN;
                 DEBUG_PRINT("RECHECK_DOWN -> CONFIRMED_DOWN:%d\n", currPressedButton);

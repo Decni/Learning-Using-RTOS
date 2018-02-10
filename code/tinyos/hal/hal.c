@@ -9,9 +9,18 @@
 #include <stdio.h>
 #include "tinyOS.h"
 
-#define RTE_DEVICE_STDPERIPH_USART
+#define HAL_STM32           // HAL所用的硬件平台
 
-#include "stm32f10x_conf.h"
+#define IRQ_HIGH       0
+#define IRQ_LOW        1
+
+#ifdef HAL_STM32
+    #include <stm32f10x.h>
+    #include "stm32f10x_conf.h"
+#endif
+
+#include "core_cm3.h"
+
 #include "hal.h"
 
 #if TINYOS_ENABLE_MUTEX == 1
@@ -19,6 +28,7 @@
 #endif
 
 void usartInit (void) {
+#ifdef HAL_STM32
     USART_InitTypeDef USART_InitStructure;
     GPIO_InitTypeDef GPIO_InitStructure;
 
@@ -40,37 +50,11 @@ void usartInit (void) {
     USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
     USART_Init(USART1, &USART_InitStructure);
     USART_Cmd(USART1, ENABLE);
+#endif
 
 #if TINYOS_ENABLE_MUTEX == 1
     tMutexInit(&xprintfMutex);
 #endif
-}
-
-void extioInit (void) {
-    NVIC_InitTypeDef NVIC_InitStructure;
-    EXTI_InitTypeDef EXTI_InitStructure;
-    GPIO_InitTypeDef GPIO_InitStructure;
-
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_AFIO, ENABLE);
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;
-    GPIO_Init(GPIOA, &GPIO_InitStructure);
-
-    EXTI_ClearITPendingBit(EXTI_Line0);
-    GPIO_EXTILineConfig(GPIO_PortSourceGPIOA, GPIO_PinSource0);
-    EXTI_InitStructure.EXTI_Line = EXTI_Line0;
-    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
-    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising_Falling;
-    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
-    EXTI_Init(&EXTI_InitStructure);
-
-    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;
-    NVIC_InitStructure.NVIC_IRQChannelCmd = DISABLE;
-    NVIC_Init(&NVIC_InitStructure);
 }
 
 /*
@@ -78,15 +62,19 @@ void extioInit (void) {
  */
 void interruptInit (void) {
     NVIC_SetPriorityGrouping(NVIC_PriorityGroup_2);
-    NVIC_SetPriority(USART1_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
-    NVIC_SetPriority(USART2_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 1, 0));
+    NVIC_SetPriority((IRQn_Type)IRQ_HIGH, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
+    NVIC_SetPriority((IRQn_Type)IRQ_LOW, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 1, 0));
 }
 
 /**
  * 进入低功耗模式
  */
 void targetEnterSleep (void) {
+#ifdef HAL_STM32
     PWR_EnterSTOPMode(PWR_Regulator_ON, PWR_STOPEntry_WFI);
+#else
+    __WFI();
+#endif
 }
 
 /**
@@ -94,8 +82,15 @@ void targetEnterSleep (void) {
  * @param ch
  */
 void uartSendChar (char ch) {
+#ifdef HAL_STM32
     USART_SendData(USART1, (unsigned char) ch);
     while (USART_GetFlagStatus(USART1, USART_FLAG_TC) != SET);
+#else
+    if (DEMCR & TRCENA) {
+        while (ITM_Port32(0) == 0);
+        ITM_Port8(0) = ch;
+    }
+#endif
 }
 
 /**
@@ -122,10 +117,10 @@ void interruptEnable (enum IRQType irq, int enable) {
 
     switch (irq) {
         case IRQ_PRIO_HIGH:
-            type = USART1_IRQn;
+            type = (IRQn_Type)IRQ_HIGH;
             break;
         case IRQ_PRIO_MIDDLE:
-            type = USART2_IRQn;
+            type = (IRQn_Type)IRQ_LOW;
             break;
         case IRQ_PRIO_LOW:
             break;
@@ -145,10 +140,10 @@ void interruptByIRQ (enum IRQType irq) {
 
     switch (irq) {
         case IRQ_PRIO_HIGH:
-            type = USART1_IRQn;
+            type = (IRQn_Type)IRQ_HIGH;
             break;
         case IRQ_PRIO_MIDDLE:
-            type = USART2_IRQn;
+            type = (IRQn_Type)IRQ_LOW;
             break;
         case IRQ_PRIO_LOW:
             break;
@@ -179,19 +174,22 @@ __weak void IRQLowHandler (void) {
 
 }
 
+#ifdef HAL_STM32
 /**
  * 中断处理函数
  */
-__weak void USART1_IRQHandler (void) {
+void WWDG_IRQHandler (void) {
     IRQHighHandler();
 }
 
 /**
  * 中断处理函数
  */
-void USART2_IRQHandler (void) {
+void PVD_IRQHandler (void) {
     IRQMiddleHandler();
 }
+
+#endif
 
 /**
  *
@@ -217,6 +215,5 @@ void printMem (uint8_t *mem, uint32_t size) {
  */
 void halInit (void) {
     usartInit();
-    extioInit();
     interruptInit();
 }

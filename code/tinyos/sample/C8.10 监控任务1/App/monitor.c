@@ -17,23 +17,19 @@ static uint8_t monitorIsOn;
 static tTaskStack monitorTaskEnv[MONITOR_TASK_ENV_SIZE];
 static tTask monitorTask;
 
-static tMbox cmdMbox;
-static void * msgBuffer[MONITOR_MAX_CMD];
-
-static tMemBlock cmdMemBlock;
-static MonitorCmd cmdMem[MONITOR_MAX_CMD];
-
-static uint32_t monitorPeriod;          // 监控周期
+static void showReportMsg (const char * msg) {
+    UartWrite(msg, strlen(msg));
+}
 
 /**
  * 监控任务
  * @param param
  */
 void monitorTaskEntry (void * param) {
+    showReportMsg("Monitor Running\r\n");
+    
     for (;;) {
-        MonitorCmd * cmd;
-
-        tMboxWait(&cmdMbox, (void **)&cmd, monitorPeriod / TINYOS_SYSTICK_MS);
+        tTaskDelay(1);
     }
 }
 
@@ -50,12 +46,6 @@ void MonitorOn (void) {
     }
 
     monitorIsOn = 1;
-
-    monitorPeriod = MONITOR_DEFAULT_TIMEOUT;
-
-    tMboxInit(&cmdMbox, msgBuffer, MONITOR_MAX_CMD);
-    tMemBlockInit(&cmdMemBlock, cmdMem, sizeof(MonitorCmd), MONITOR_MAX_CMD);
-
     tTaskInit(&monitorTask, monitorTaskEntry, (void *) 0x0, MONITOR_TASK_PRIO, monitorTaskEnv, sizeof(monitorTaskEnv));
 }
 

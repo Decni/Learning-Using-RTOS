@@ -84,12 +84,9 @@ void ExtIOSetDir (ExtIOPin pin, uint8_t isInput) {
  * 设置所有IO为输入态
  */
 void ExtIOResetInput (void) {
-    GPIO_InitTypeDef GPIO_InitStructure;
-
-    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
-    GPIO_Init(GPIOA, &GPIO_InitStructure);
+    ExtIOSetDir(ExtIOPin0, 1);
+    ExtIOSetDir(ExtIOPin1, 1);
+    ExtIOSetDir(ExtIOPin2, 1);
+    ExtIOSetDir(ExtIOPin3, 1);
 }
 

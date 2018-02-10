@@ -61,6 +61,81 @@ static void setPromote (const char * newPromote) {
     promoteBuffer[sizeof(promoteBuffer) - 1] = '\0';
 }
 
+static ExtIOPin convertPinNum (char * pinCh) {
+    ExtIOPin pinNum;
+    
+    if (pinCh == NULL) {
+        return ExtIOPinEnd;
+    }
+    
+    pinNum = (ExtIOPin)(*pinCh - '0');
+    if (pinNum >= ExtIOPinEnd) {
+        return ExtIOPinEnd;
+    }
+    
+    return pinNum;
+}
+
+static void extioCmd (void) {
+    char * type = strtok(NULL, spaceCh);             // extio set/get/dir
+    if (type == NULL) {
+        showMsg(noEnoughParamMsg);
+        return;
+    }
+    
+    if (strstr(type, "get")) {      // extio get pin
+        ExtIOPin pin;
+        ExtIOState state;
+        
+        pin = convertPinNum(strtok(NULL, spaceCh));
+        if (pin == ExtIOPinEnd) {
+            showMsg(unknownPinMsg);
+            return;
+        }
+        
+        state = ExtIOGetState(pin);
+        showMsg((state == ExtIOHigh) ? "1\r\n" : "0\r\n");
+    } else if (strstr(type, "set")) {       // extio set pin value
+        ExtIOPin pin;
+        char * value;
+        
+        pin = convertPinNum(strtok(NULL, spaceCh));
+        if (pin == ExtIOPinEnd) {
+            showMsg(unknownPinMsg);
+            return;
+        }
+        
+        value = strtok(NULL, spaceCh);
+        if (value == NULL) {
+            showMsg(noEnoughParamMsg);
+            return;
+        }
+        
+        ExtIOSetState(pin, *value == '0' ? ExtIOLow : ExtIOHigh);
+        
+    } else if (strstr(type, "dir")) {       // extio dir pin in/out
+        ExtIOPin pin;
+        char * outType;
+        
+        pin = convertPinNum(strtok(NULL, spaceCh));
+        if (pin == ExtIOPinEnd) {
+            showMsg(unknownPinMsg);
+            return;
+        }
+        
+        outType = strtok(NULL, spaceCh);
+        if (outType == NULL) {
+            showMsg(noEnoughParamMsg);
+            return;
+        }
+        
+        ExtIOSetDir(pin, strstr(outType, "in") ? 1 : 0);
+    } else {
+        showMsg(noEnoughParamMsg);
+    }
+    
+}  
+
 /**
  * 提示符修改命令
  */
@@ -128,7 +203,9 @@ static void processCmd (char * cmdLine) {
     }
 
     // 识别命令
-    if (strstr(cmdStart, "promote")){
+    if (strstr(cmdStart, "extio")) {
+        extioCmd();
+    } else if (strstr(cmdStart, "promote")){
         promoteCmd();
     } else {
         unknowCmd();

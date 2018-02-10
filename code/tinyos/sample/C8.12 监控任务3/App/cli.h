@@ -12,7 +12,6 @@
 #define CLI_TASK_PRIO                     0
 #define CLI_CMD_PROMATE_SIZE            64
 #define CLI_TASK_ENV_SIZE               512
-#define CLI_CMD_HISTORY_SIZE            1024
 #define CLI_CMD_BUFFER_SIZE             128
 
 void CLIInit (void);

@@ -37,7 +37,7 @@ static void ButtonHalInit (void) {
  */
 static ButtonId ButtonGetWhichPress (void) {
     uint8_t state;
-	ButtonId buttonId = ButtonNone;
+    ButtonId buttonId = ButtonNone;
 
     state = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_1);
     if (state == Bit_SET) {

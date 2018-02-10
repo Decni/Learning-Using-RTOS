@@ -16,6 +16,7 @@
 #include "WaveGen.h"
 #include "cli.h"
 #include "extevent.h"
+#include "monitor.h"
 
 #include "string.h"
 
@@ -38,6 +39,7 @@ void tInitApp (void) {
     UartInit();
     ExtIOInit(ExtEventExtIOInt);
     WaveGenInit();
+    MonitorInit();
 
     CLIInit();
     ExtEventInit();

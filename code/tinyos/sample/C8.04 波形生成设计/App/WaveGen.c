@@ -110,9 +110,13 @@ uint32_t WaveStartOutput (void) {
  */
 void WaveStopOutput (void) {
     tMutexWait(&mutex, 0);
-
-    TIM3->CNT = 0;
-    TIM_Cmd(TIM3, DISABLE);//打开定时器
-
+    switch (currentWaveType) {
+        case WaveSquare:
+            TIM3->CNT = 0;
+            TIM_Cmd(TIM3, DISABLE);
+            break;
+        default:
+            break;
+    }
     tMutexNotify(&mutex);
 }

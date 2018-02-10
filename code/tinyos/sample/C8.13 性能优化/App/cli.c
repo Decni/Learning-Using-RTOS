@@ -201,10 +201,6 @@ static void monitorPinCmd (void) {
         }
 
         cmd = MonitorAllocCmd();
-        if (cmd == 0) {
-            return;
-        }
-
         cmd->isAdd = isOn;
         cmd->target = MonitorExtIOPin;
         cmd->options.pin.pinNum = pin;
@@ -213,35 +209,30 @@ static void monitorPinCmd (void) {
 }
 
 static void monitorCPUCmd (void) {
-    MonitorCmd * cmd;
     uint8_t isOn = 0;
 
-    char *on_off = strtok(NULL, spaceCh);         // 解析开关on/off
+    char * on_off = strtok(NULL, spaceCh);  // monitor cpu on/off
 
     if (on_off == NULL) {
         showMsg(noEnoughParamMsg);
         return;
     } else if (strstr(on_off, "on")) {
-        char *percent = strtok(NULL, spaceCh);      // 解析监控百分比
-        
+        MonitorCmd * cmd = MonitorAllocCmd();
+
+        char * percent = strtok(NULL, spaceCh); // monitor cpu on percent
         isOn = 1;
         if (percent != NULL) {
             float cpuPercent = (float)atof(percent);
-            cmd->options.cpu.warnPercent = cpuPercent;
             cmd->options.cpu.warning = 1;
+            cmd->options.cpu.warnPercent = cpuPercent;
         } else {
             cmd->options.cpu.warning = 0;
         }
-    }
 
-    cmd = MonitorAllocCmd();
-    if (cmd == 0) {
-        return;
+        cmd->isAdd = isOn;
+        cmd->target = MonitorCPUUsage;
+        MonitorSendCmd(cmd);
     }
-
-    cmd->isAdd = isOn;
-    cmd->target = MonitorCPUUsage;
-    MonitorSendCmd(cmd);
 }
 
 /**

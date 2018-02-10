@@ -10,8 +10,8 @@
 #define UART_H
 
 #define UART_BAUDRATE           115200
-#define UART_RXBUFFER_SIZE      64
-#define UART_TXBUFFER_SIZE      64
+#define UART_RXBUFFER_SIZE      32
+#define UART_TXBUFFER_SIZE      128
 
 void UartInit (void);
 void UartRead (char * packet, uint32_t len);

@@ -10,14 +10,15 @@
 #include "uart.h"
 #include "stm32f10x_usart.h"
 
-// 接收缓冲处理
-static tMbox rxMbox;
-static void * rxMboxMsgBuffer[UART_RXBUFFER_SIZE];
+static uint8_t rxBuffer[UART_RXBUFFER_SIZE];
+static uint32_t rxWritePos;
+static uint32_t rxReadPos;
+static tSem rxReceivedSem;
 
-// 发送相关设置
-static tSem txSem;
-static tMbox txMbox;
-static void * txMboxMsgBuffer[UART_TXBUFFER_SIZE];     // 采用邮箱会浪费一定空间，但是简化
+static uint8_t txBuffer[UART_TXBUFFER_SIZE];
+static uint32_t txWritePos;
+static uint32_t txReadPos;
+static tSem txFreeSem;
 
 /**
  * 中断处理函数
@@ -28,8 +29,22 @@ void USART1_IRQHandler (void) {
     // 串口接收
     status = USART_GetITStatus(USART1, USART_IT_RXNE);
     if (status == SET) {
-        uint32_t ch = (uint32_t)USART_ReceiveData(USART1);
-        tMboxNotify(&rxMbox, (void *)ch, tMBOXSendNormal);
+        tSemInfo semInfo;
+
+        uint16_t ch = (uint32_t)USART_ReceiveData(USART1);
+
+        // 仅当有空闲空间时才写入，否则丢弃
+        tSemGetInfo(&rxReceivedSem, &semInfo);
+        if (semInfo.count < semInfo.maxCount) {
+            tTaskCritical_t critical = tTaskEnterCritical();
+            rxBuffer[rxWritePos++] = (uint8_t)ch;
+            if (rxWritePos >= UART_RXBUFFER_SIZE) {
+                rxWritePos = 0;
+            }
+            tTaskExitCritical(critical);
+
+            tSemNotify(&rxReceivedSem);
+        }
 
         USART_ClearITPendingBit(USART1, USART_IT_RXNE);
     }
@@ -37,13 +52,23 @@ void USART1_IRQHandler (void) {
     // 发送中断: 自动从邮箱中取数据发送
     status = USART_GetITStatus(USART1, USART_IT_TXE);
     if (status == SET) {
-        void * ch;
-        uint32_t err;
+        tSemInfo semInfo;
 
-        // 有数据，从待发送邮箱中获取消息发送
-        err = tMboxNoWaitGet(&txMbox, &ch);
-        if (err == tErrorNoError) {
-            tSemNotify(&txSem);        // 通知有新的空间可用
+        // 如果发送缓冲有数据，取一个发送
+        tSemGetInfo(&txFreeSem, &semInfo);
+        if (semInfo.count < semInfo.maxCount) {
+            tTaskCritical_t critical;
+            uint8_t ch;
+
+            // 从发送缓冲区中取数据
+            critical = tTaskEnterCritical();
+            ch = txBuffer[txReadPos++];
+            if (txReadPos >= UART_TXBUFFER_SIZE) {
+                txReadPos = 0;
+            }
+            tTaskExitCritical(critical);
+
+            tSemNotify(&txFreeSem);
 
             USART_SendData(USART1, (uint16_t)ch);
         } else {
@@ -90,12 +115,14 @@ static void UartHalInit (void) {
 void UartInit (void) {
     UartHalInit();
 
-    tMboxInit(&rxMbox, rxMboxMsgBuffer, UART_RXBUFFER_SIZE);
+    tSemInit(&rxReceivedSem, 0, UART_RXBUFFER_SIZE);
+    rxReadPos = 0;
+    rxWritePos = 0;
 
-    // 发送相关
-    tSemInit(&txSem, UART_TXBUFFER_SIZE, UART_TXBUFFER_SIZE);
-    tMboxInit(&txMbox, txMboxMsgBuffer, UART_TXBUFFER_SIZE);
-}
+    tSemInit(&txFreeSem, UART_TXBUFFER_SIZE, UART_TXBUFFER_SIZE);
+    txReadPos = 0;
+    txWritePos = 0;
+ }
 
 /**
  * 等待接收数据包
@@ -103,10 +130,18 @@ void UartInit (void) {
  * @return 0 无错误；1 有错误
  */
 void UartRead (char * packet, uint32_t len) {
+    tTaskCritical_t critical;
+
     while (len -- > 0) {
-        void * ch;
-        tMboxWait(&rxMbox, (void **)&ch, 0);
-        *packet++ = (char)ch;
+        tSemWait(&rxReceivedSem, 0);
+
+        // 从接收缓冲区中读取
+        critical = tTaskEnterCritical();
+        *packet++ = rxBuffer[rxReadPos++];
+        if (rxReadPos >= UART_RXBUFFER_SIZE) {
+            rxReadPos = 0;
+        }
+        tTaskExitCritical(critical);
     }
 }
 
@@ -115,12 +150,20 @@ void UartRead (char * packet, uint32_t len) {
  * @param packet 待写入的数据包
  */
 void UartWrite (const char * packet, uint32_t len) {
+    tTaskCritical_t critical;
     uint32_t status;
-    const char * ch = packet;
 
     while (len-- > 0) {
-        tSemWait(&txSem, 0);
-        tMboxNotify(&txMbox, (void *)*ch++, tMBOXSendNormal);
+        // 等待空闲空间
+        tSemWait(&txFreeSem, 0);
+
+        // 写入发送缓冲区
+        critical = tTaskEnterCritical();
+        txBuffer[txWritePos++] = *packet++;
+        if (txWritePos >= UART_TXBUFFER_SIZE) {
+            txWritePos = 0;
+        }
+        tTaskExitCritical(critical);
 
         // 这里加循环反复调用，是考虑到中途可能发生其它中断延迟导致没有及时触发
         // 只有当硬件真正在空闲时，才手动触发一次

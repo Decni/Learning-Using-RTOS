@@ -26,5 +26,6 @@ void ExtIOInit (void);
 void ExtIOSetState (ExtIOPin pin, ExtIOState);
 ExtIOState ExtIOGetState (ExtIOPin pin);
 void ExtIOSetDir (ExtIOPin pin, uint8_t isInput);
+void ExtIOResetInput (void);
 
 #endif //PROJECT_EXTIO_H

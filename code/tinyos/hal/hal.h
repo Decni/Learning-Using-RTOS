@@ -9,7 +9,6 @@
 #ifndef PROJECT_TARGET_H
 #define PROJECT_TARGET_H
 
-#include <stm32f10x.h>
 #include "tinyOS.h"
 #include <stdio.h>
 

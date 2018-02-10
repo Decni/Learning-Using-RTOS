@@ -14,8 +14,6 @@
 
 #define MONITOR_TASK_PRIO           0
 #define MONITOR_TASK_ENV_SIZE       512
-#define MONITOR_MAX_CMD             10
-#define MONITOR_DEFAULT_TIMEOUT     1000
 
 void MonitorInit (void);
 void MonitorOn (void);
