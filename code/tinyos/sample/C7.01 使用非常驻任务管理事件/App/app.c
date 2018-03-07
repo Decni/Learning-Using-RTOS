@@ -51,7 +51,7 @@ void task2Entry (void *param) {
         task2Flag = 0;
         tTaskDelay(1);
 			
-				tTaskInit(&task1, task1Entry, (void *)&value, TASK1_PRIO, task1Env, sizeof(task1Env));
+		tTaskInit(&task1, task1Entry, (void *)&value, TASK1_PRIO, task1Env, sizeof(task1Env));
 				
     }
 }
